@@ -2,7 +2,7 @@ import React from 'react';
 import StatusUpdate from './statusupdate';
 import CommentThread from './commentthread';
 import Comment from './comment';
-import {postComment,likeFeedItem,unlikeFeedItem} from '../server';
+import {postComment, unlikeFeedItem, likeFeedItem} from "../server.js"
 
 export default class FeedItem extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ export default class FeedItem extends React.Component {
       this.setState(updatedFeedItem);
     });
   }
+
   /**
    * Triggered when the user clicks on the 'like' or 'unlike' button.
    */
@@ -66,7 +67,6 @@ export default class FeedItem extends React.Component {
   }
 
   render() {
-
     var likeButtonText = "Like";
     if (this.didUserLike()) {
       likeButtonText = "Unlike";
@@ -82,10 +82,10 @@ export default class FeedItem extends React.Component {
         contents = (
           <StatusUpdate key={data._id} author={data.contents.author} postDate={data.contents.postDate} location={data.contents.location}>
             {data.contents.contents.split("\n").map((line, i) => {
-  // Note: 'i' is the index of line in data.contents.contents.
-          return (
-              <p key={"line" + i}>{line}</p>
-                  );
+              // Note: 'i' is the index of line in data.contents.contents.
+              return (
+                <p key={"line" + i}>{line}</p>
+              );
             })}
           </StatusUpdate>
         );
@@ -126,17 +126,18 @@ export default class FeedItem extends React.Component {
           <hr />
           <CommentThread onPost={(commentText) => this.handleCommentPost(commentText)}>
             {
-                data.comments.map((comment, i) => {
-                  // i is comment's index in comments array
-                  return (
-                    <Comment key={i} author={comment.author} postDate={comment.postDate}>{comment.contents}</Comment>
-                          );
-                        })
-              }
+              data.comments.map((comment, i) => {
+                // i is comment's index in comments array
+                return (
+                  <Comment key={i} author={comment.author} postDate={comment.postDate}>{comment.contents}</Comment>
+                );
+              })
+            }
           </CommentThread>
         </div>
       </div>
     )
   }
+
 
 }

@@ -9,6 +9,7 @@ function emulateServerReturn(data, cb) {
     cb(data);
   }, 4);
 }
+
 /**
  * Given a feed item ID, returns a FeedItem object with references resolved.
  * Internal to the server, since it's synchronous.
@@ -49,6 +50,7 @@ export function getFeedData(user, cb) {
   // invokes (calls) the "cb" function some time in the future.
   emulateServerReturn(feedData, cb);
 }
+
 /**
  * Adds a new status update to the database.
  */
@@ -88,6 +90,7 @@ export function postStatusUpdate(user, location, contents, cb) {
   // Return the newly-posted object.
   emulateServerReturn(newStatusUpdate, cb);
 }
+
 /**
  * Adds a new comment to the database on the given feed item.
  * Returns the updated FeedItem object.
